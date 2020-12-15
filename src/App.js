@@ -109,6 +109,8 @@ function App() {
   let songs = Object.keys(music[filter]);
   let artistName = [];
   let songUrl = [];
+  let allSongs = new Array();
+  let songList = [];
 
   function updateValues() {
     for (let i = 0; i < songs.length; i++) {
@@ -127,6 +129,21 @@ function App() {
     console.log(url);
     setCurSong({ name: song, artist: name, url: url });
   };
+
+  ///////////////////////////////// GETTING ALL SONGS
+  function getAllSongs() {
+    let allGenres = Object.keys(music);
+    for (let i = 0; i < allGenres.length; i++) {
+      allSongs[i] = Object.keys(music[allGenres[i]]);
+    }
+  }
+  getAllSongs();
+  for (let j = 0; j < allSongs.length; j++) {
+    songList = songList.concat(allSongs[j]);
+  }
+  console.log(songList);
+
+  ///////////////////////////////////// REACT APP
 
   return (
     <div className="App">
@@ -150,17 +167,13 @@ function App() {
           </div>
           <div className="trend_list">
             <ul>
-              <li>#1</li>
-
-              <li>#2</li>
-
-              <li>#3</li>
-
-              <li>#4</li>
-
-              <li>#5</li>
-
-              <li>#6</li>
+              {songList.map((song, index) => {
+                return (
+                  <li>
+                    #{index} {song}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
@@ -181,6 +194,8 @@ function App() {
               );
             })}
           </div>
+
+          {/* ********SONGS CONTAINER******* */}
 
           <div className="songs_cont">
             {songs.map((e, index) => {
