@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import "./App.css";
-import play from "./play-circle-solid.svg";
-import forward from "./forward-solid.svg";
-import backward from "./backward-solid.svg";
 
 //////////////////////////////// MUSIC DATA
 
 let music = {
-  rock: {
+  Rock: {
     "Purple Haze": {
       artist: "Jimi Hendrix",
       url: "https://spoti.fi/386cpM5",
@@ -29,7 +26,7 @@ let music = {
       url: "https://spoti.fi/3nmT1kc",
     },
   },
-  pop: {
+  Pop: {
     Thriller: {
       artist: "Michael Jackson",
       url: "https://spoti.fi/3gL9NqB",
@@ -65,7 +62,7 @@ let music = {
       url: "https://spoti.fi/3a9KEos",
     },
   },
-  indian: {
+  Indian: {
     "Aao Balma": {
       artist: "A.R Rahman , Ghulam Mustafa Khan",
       url: "https://spoti.fi/3mgSpLH",
@@ -89,7 +86,7 @@ let filterName = Object.keys(music);
 let curFilter;
 
 function App() {
-  const [filter, setFilter] = useState("rock");
+  const [filter, setFilter] = useState("Rock");
   const [curSong, setCurSong] = useState({
     name: "Now Playing",
     artist: "artist",
@@ -111,6 +108,7 @@ function App() {
   let songUrl = [];
   let allSongs = new Array();
   let songList = [];
+  let isAvailable;
 
   function updateValues() {
     for (let i = 0; i < songs.length; i++) {
@@ -131,6 +129,7 @@ function App() {
   };
 
   ///////////////////////////////// GETTING ALL SONGS
+
   function getAllSongs() {
     let allGenres = Object.keys(music);
     for (let i = 0; i < allGenres.length; i++) {
@@ -141,7 +140,28 @@ function App() {
   for (let j = 0; j < allSongs.length; j++) {
     songList = songList.concat(allSongs[j]);
   }
-  console.log(songList);
+  //////////////////////////////////////// SEARCH (Not working)
+
+  let search = (event) => {
+    let input = event.target.value;
+    songList.map((name) => {
+      if (input.toUpperCase() == name.toUpperCase()) {
+        isAvailable = true;
+      }
+    });
+  };
+  let showAvailable = () => {
+    let ans;
+    if (isAvailable) {
+      console.log("we have it");
+      ans = "we have it";
+      return ans;
+    } else {
+      console.log("sorry");
+      ans = "";
+      return ans;
+    }
+  };
 
   ///////////////////////////////////// REACT APP
 
@@ -151,11 +171,23 @@ function App() {
 
       <header className="header">
         <div className="logo_cont">
-          <h4 className="logo">Spotify Recommendation</h4>
+          <img src="https://bit.ly/37kGTL5" className="spotify_logo" />
+          <h4 className="logo">Spotify Recommendations</h4>
         </div>
         <div className="search_cont">
-          <input className="search"></input>
-          <button className="search_btn">Search</button>
+          <div className="search_inputs">
+            <input
+              className="search"
+              placeholder="Search for songs"
+              onChange={search}
+            ></input>
+            <button className="search_btn" onClick={showAvailable}>
+              Search
+            </button>
+          </div>
+          <div className="search_outputs">
+            <h3 className="search_output">{showAvailable}</h3>
+          </div>
         </div>
       </header>
 
@@ -169,8 +201,8 @@ function App() {
             <ul>
               {songList.map((song, index) => {
                 return (
-                  <li>
-                    #{index} {song}
+                  <li className="trend_songs">
+                    <span>#{index}</span> {song}
                   </li>
                 );
               })}
@@ -206,7 +238,18 @@ function App() {
                   </h5>
                   <h6 className="artistName">{artistName[index]}</h6>;
                   <a href={songUrl[index]}>
-                    <img src={play} className="play" />
+                    <svg
+                      width="[width]"
+                      height="[height]"
+                      className="play"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"
+                      ></path>
+                    </svg>
                   </a>
                 </div>
               );
@@ -223,11 +266,44 @@ function App() {
           <h5 className="songName">{curSong.name}</h5>
           <h6 className="artistName">{curSong.artist}</h6>
           <div className="nowPlayingIcon_cont">
-            <img className="icons" src={backward} />
+            <svg
+              className="icons"
+              width="[width]"
+              height="[height]"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+            >
+              <path
+                fill="currentColor"
+                d="M11.5 280.6l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2zm256 0l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2z"
+              ></path>
+            </svg>
             <a href={curSong.url}>
-              <img className="icons" src={play} />
+              <svg
+                className="playIcon"
+                width="[width]"
+                height="[height]"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  fill="currentColor"
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"
+                ></path>
+              </svg>
             </a>
-            <img className="icons" src={forward} />
+            <svg
+              className="icons"
+              width="[width]"
+              height="[height]"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+            >
+              <path
+                fill="currentColor"
+                d="M500.5 231.4l-192-160C287.9 54.3 256 68.6 256 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2zm-256 0l-192-160C31.9 54.3 0 68.6 0 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2z"
+              ></path>
+            </svg>
           </div>
         </div>
 
