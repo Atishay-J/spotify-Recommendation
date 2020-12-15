@@ -1,10 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Cabin:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 :root {
-  --col1: "#1db954";
-  --col2: "#1db954";
-  --col3: "#121212";
-  --col4: "#000000";
-  --textCol: "#b3a274";
+  --col1: #1db954;
+  --col2: #121212;
+  --col3: #000000;
+  --col4: #0c0c0c;
+  --textCol: #b3a274;
+  --textCol2: #727272;
   --font1: "Archivo Black", sans-serif;
   --font2: "Cabin", sans-serif;
   --font3: "Poppins", sans-serif;
@@ -14,6 +15,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+a {
+  background: none;
+  color: none;
+  text-decoration: none;
+}
 .App {
   height: 100vh;
   display: flex;
@@ -21,68 +27,185 @@
   justify-content: space-between;
 }
 .header {
-  border: 2px solid red;
+  border: none;
+  background: #000;
   display: flex;
   justify-content: space-between;
   padding: 1.3rem 1.5rem 1.3rem 1.5rem;
 }
+.logo_cont {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.spotify_logo {
+  width: 1.8rem;
+}
+.logo {
+  color: var(--col1);
+  font-family: var(--font1);
+  font-size: 1.1rem;
+  margin-left: 0.4rem;
+}
+.search {
+  height: 1.3rem;
+  width: 8rem;
+  border: 1px solid var(--col1);
+  background: var(--col2);
+  color: white;
+  font-size: 0.7rem;
+  padding: 0.2rem;
+}
+.search_btn {
+  height: 1.3rem;
+  border: none;
+  background: var(--col1);
+  width: 3rem;
+  color: white;
+  font-size: 0.7rem;
+  padding: 0.2rem;
+}
 .main_cont {
-  border: 2px solid blue;
+  border: none;
   display: flex;
   justify-content: space-between;
   height: 80%;
 }
 .side_bar {
-  border: 2px solid grey;
+  border: none;
+  background: #000;
   width: 25%;
 }
 .trend_header {
   text-align: center;
+  color: var(--textCol);
+  font-family: var(--font3);
+  font-weight: 100;
+  border-top: 0.3px solid rgb(51, 50, 50);
+  padding-top: 0.4rem;
+}
+.trend_list {
+  margin: 1rem 0 0 1rem;
+}
+.trend_songs {
+  color: var(--textCol2);
+  font-size: 0.69rem;
+  list-style: none;
+  padding-top: 0.5rem;
+  font-family: var(--font3);
+}
+.trend_songs > span {
+  color: var(--textCol);
+  padding-right: 0.4rem;
 }
 .song_list {
-  border: 2px solid yellow;
+  border: none;
   width: 75%;
   overflow-y: scroll;
   overflow-x: hidden;
+  background: var(--col2);
 }
 .heading {
   text-align: center;
+  font-family: var(--font3);
+  font-weight: 900;
+  font-size: 1.3rem;
+  color: white;
+  margin-top: 0.6rem;
+  letter-spacing: 0.1rem;
 }
 .filter_cont {
-  border: 1px solid magenta;
+  border: none;
+  width: 65%;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+.filters {
+  padding: 0.2rem 0 0.2rem 0;
+  width: 22%;
+  border: 1px solid var(--col1);
+  background: var(--col2);
+  color: var(--textCol2);
 }
 .songs_cont {
-  border: 1px solid rebeccapurple;
+  border-top: 0.3px solid var(--textCol2);
   margin-top: 1.2rem;
+  width: 100%;
 }
 .song_card {
-  background: rgb(173, 171, 171);
+  background: var(--col4);
+  width: 97%;
+  margin: auto;
+  margin-top: 1rem;
+  border-radius: 6px;
 }
 .songName {
-  padding: 0.4rem 0 0.2rem 0.4rem;
+  padding: 0.6rem 0 0.2rem 0.6rem;
+  font-family: var(--font3);
+  font-weight: 700;
   font-size: 1rem;
+  color: white;
+}
+.songName:hover {
+  cursor: pointer;
+  color: var(--textCol2);
 }
 .artistName {
   padding: 0.2rem 0 0.2rem 0.8rem;
+  color: var(--textCol2);
+  font-size: 0.7rem;
+  font-family: var(--font2);
 }
 .play {
-  width: 1.8rem;
+  width: 2.2rem;
+  height: 2.2rem;
   margin: 0.8rem 0 0.4rem 0.4rem;
 }
+.play > path {
+  fill: var(--col1);
+}
 .nowPlaying_cont {
-  border: 1px solid maroon;
+  border: 2px solid var(--col3);
+  background: var(--col2);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+.nowPlayingIcon_cont {
+  border: none;
+  width: 9rem;
+  height: 4rem;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .playIcon {
-  width: 2.3rem;
+  width: 2.2rem;
+  height: 2.2rem;
+}
+.playIcon > path {
+  fill: var(--col1);
 }
 .icons {
   width: 2rem;
-  padding: 0.2rem;
+  height: 2rem;
+}
+.icons > path {
+  fill: white;
 }
 .foot {
   text-align: center;
+  background: #000;
+  color: var(--textCol2);
+}
+.credits {
+  font-family: var(--font2);
+  font-weight: 100;
+}
+.copy {
+  font-family: var(--font3);
+  font-weight: 400;
 }
