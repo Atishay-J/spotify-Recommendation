@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./App.css";
 
-//////////////////////////////// MUSIC DATA
+//============================================
+/////              **MUSIC DATA**
+//============================================
 
 let music = {
   Rock: {
@@ -93,7 +95,7 @@ function App() {
     url: "",
   });
 
-  ////////////////////////////// FILTERING SONGS
+  ////                **FILTERING SONGS**
 
   let filterClick = (event) => {
     curFilter = event.target.innerHTML;
@@ -101,7 +103,7 @@ function App() {
     updateValues();
   };
 
-  /////////////////////////////////// GETTING SONGS
+  /////                  **GETTING SONGS**
 
   let songs = Object.keys(music[filter]);
   let artistName = [];
@@ -118,7 +120,7 @@ function App() {
   }
   updateValues();
 
-  ////////////////////////////////////// UPDATING NOW PLAYING
+  ///////                  **UPDATING NOW PLAYING**
 
   let updateNowPlaying = (event) => {
     let song = event.target.innerHTML;
@@ -128,7 +130,7 @@ function App() {
     setCurSong({ name: song, artist: name, url: url });
   };
 
-  ///////////////////////////////// GETTING ALL SONGS
+  /////                     **GETTING ALL SONGS**
 
   function getAllSongs() {
     let allGenres = Object.keys(music);
@@ -140,7 +142,7 @@ function App() {
   for (let j = 0; j < allSongs.length; j++) {
     songList = songList.concat(allSongs[j]);
   }
-  //////////////////////////////////////// SEARCH (Not working)
+  //////////   *********SEARCH (Not working)*************
 
   let search = (event) => {
     let input = event.target.value;
@@ -163,7 +165,20 @@ function App() {
     }
   };
 
-  ///////////////////////////////////// REACT APP
+  //==========================================
+  //              **SIDE BAR TOGGLE **
+
+  let sidebarToggle = () => {
+    console.log("hey");
+    let sideBarDiv = document.getElementById("side_toggle");
+    let songsContDiv = document.getElementById("songs");
+    sideBarDiv.classList.toggle("hideSideBar");
+    songsContDiv.classList.toggle("increaseSongsWidth");
+  };
+
+  //==========================================
+  ////////        ** REACT APP **
+  //==========================================
 
   return (
     <div className="App">
@@ -193,7 +208,8 @@ function App() {
 
       <div className="main_cont">
         {/*********  SIDE BAR ************/}
-        <div className="side_bar">
+
+        <div id="side_toggle" className="side_bar">
           <div className="trend_header">
             <h3 className="trending">Top Charts</h3>
           </div>
@@ -212,7 +228,7 @@ function App() {
 
         {/**************SONG LIST ********** */}
 
-        <div className="song_list">
+        <div id="songs" className="song_list">
           <h3 className="heading">Filter by Genre</h3>
 
           {/* ***********FILTERS********* */}
@@ -261,6 +277,14 @@ function App() {
       {/* ****************FOOTER*********** */}
 
       <footer>
+        {/* **************TRENDING TOGGLE***** */}
+
+        <div id="toggler" className="trending_btn_cont">
+          <button className="trending_toggle" onClick={sidebarToggle}>
+            <span className="trend_Sign">#</span>Trending
+          </button>
+        </div>
+
         {/* ***********NOW PLAYING******** */}
         <div className="nowPlaying_cont">
           <h5 className="songName">{curSong.name}</h5>
