@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./App.css";
 
-//////////////////////////////// MUSIC DATA
+//============================================
+///////////////////////// MUSIC DATA
+//============================================
 
 let music = {
   Rock: {
@@ -82,6 +84,9 @@ let music = {
   },
 };
 
+//============================================
+//============================================
+
 let filterName = Object.keys(music);
 let curFilter;
 
@@ -93,7 +98,7 @@ function App() {
     url: "",
   });
 
-  ////////////////////////////// FILTERING SONGS
+  //////////////           **FILTERING SONGS**
 
   let filterClick = (event) => {
     curFilter = event.target.innerHTML;
@@ -101,7 +106,7 @@ function App() {
     updateValues();
   };
 
-  /////////////////////////////////// GETTING SONGS
+  ////////////             ** GETTING SONGS **
 
   let songs = Object.keys(music[filter]);
   let artistName = [];
@@ -118,7 +123,7 @@ function App() {
   }
   updateValues();
 
-  ////////////////////////////////////// UPDATING NOW PLAYING
+  /////////////////          **UPDATING NOW PLAYING**
 
   let updateNowPlaying = (event) => {
     let song = event.target.innerHTML;
@@ -128,7 +133,7 @@ function App() {
     setCurSong({ name: song, artist: name, url: url });
   };
 
-  ///////////////////////////////// GETTING ALL SONGS
+  //////                  **GETTING ALL SONGS**
 
   function getAllSongs() {
     let allGenres = Object.keys(music);
@@ -140,7 +145,7 @@ function App() {
   for (let j = 0; j < allSongs.length; j++) {
     songList = songList.concat(allSongs[j]);
   }
-  //////////////////////////////////////// SEARCH (Not working)
+  ////////               **SEARCH (Not working)**
 
   let search = (event) => {
     let input = event.target.value;
@@ -162,9 +167,9 @@ function App() {
       return ans;
     }
   };
-
-  ///////////////////////////////////// REACT APP
-
+  //============================================
+  //////////////////// REACT APP
+  //============================================
   return (
     <div className="App">
       {/************* Header *************/}
@@ -174,6 +179,9 @@ function App() {
           <img src="https://bit.ly/37kGTL5" className="spotify_logo" />
           <h4 className="logo">Spotify Recommendations</h4>
         </div>
+
+        {/* **********SEARCH BAR *************/}
+
         <div className="search_cont">
           <div className="search_inputs">
             <input
