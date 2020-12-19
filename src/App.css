@@ -55,6 +55,7 @@ a {
   color: white;
   font-size: 0.7rem;
   padding: 0.2rem;
+  border-radius: 20px 0 0 20px;
 }
 .search_btn {
   height: 1.3rem;
@@ -64,6 +65,7 @@ a {
   color: white;
   font-size: 0.7rem;
   padding: 0.2rem;
+  border-radius: 0 20px 20px 0;
 }
 .main_cont {
   border: none;
@@ -127,6 +129,7 @@ a {
   border: 1px solid var(--col1);
   background: var(--col2);
   color: var(--textCol2);
+  cursor: pointer;
 }
 .songs_cont {
   border-top: 0.3px solid var(--textCol2);
@@ -164,6 +167,9 @@ a {
 }
 .play > path {
   fill: var(--col1);
+}
+.trending_btn_cont {
+  display: none;
 }
 .nowPlaying_cont {
   border: 2px solid var(--col3);
@@ -232,13 +238,55 @@ a {
     margin-top: 1.5rem;
   }
   .side_bar {
+    width: 45%;
     overflow-y: scroll;
+  }
+
+  .hideSideBar {
+    display: none;
+  }
+  .increaseSongsWidth {
+    width: 100%;
+    transition: 1s;
+  }
+  .filter_cont {
+    width: auto;
   }
   footer {
     height: 15vh;
   }
+  .trending_btn_cont {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    margin-top: 1.5rem;
+    margin-left: 1rem;
+  }
+  .trending_toggle {
+    background: #000;
+    /* width: 5.8rem;
+    height: 2rem; */
+    padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+    border-radius: 20px;
+    color: white;
+    font-size: 0.93rem;
+    text-align: center;
+    border: 0.1px solid var(--textCol);
+  }
+  .trending_toggle:hover {
+    cursor: pointer;
+    background: var(--col2);
+    color: var(--textCol2);
+  }
+  .trend_Sign {
+    color: var(--col1);
+    font-weight: bolder;
+    margin-right: 0.3rem;
+    font-size: 1rem;
+  }
   .nowPlaying_cont {
     height: 15vh;
+    position: relative;
   }
   .foot {
     display: none;
